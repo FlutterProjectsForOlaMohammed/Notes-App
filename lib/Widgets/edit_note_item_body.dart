@@ -1,18 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:notesapp/Widgets/custom_add_button.dart';
+import 'package:notesapp/Widgets/custom_app_bar.dart';
 import 'package:notesapp/Widgets/custom_text_form_field.dart';
 
-class ShowModalBottomSheet extends StatelessWidget {
-  const ShowModalBottomSheet({
-    super.key,
-  });
+class EditNoteItemBody extends StatelessWidget {
+  const EditNoteItemBody({super.key});
 
   @override
   Widget build(BuildContext context) {
     return ListView(
+      padding: EdgeInsets.zero,
       children: const [
-        SizedBox(
-          height: 50,
+        Padding(
+          padding: EdgeInsets.only(left: 24, right: 24, top: 50, bottom: 30),
+          child: CustomAppBar(
+            title: "Edit Note",
+            icon: Icons.check,
+          ),
         ),
         CustomTextFormField(hintText: "Title", maxLines: 1),
         SizedBox(
@@ -23,14 +26,7 @@ class ShowModalBottomSheet extends StatelessWidget {
           maxLines: 5,
           heightHintText: 8,
         ),
-        SizedBox(
-          height: 100,
-        ),
-        CustomAddButton()
       ],
     );
   }
 }
-// Spacer --> for expand 
-// SingleChildScrollView --> make Column Shrink its Childern 
-// so they Not Suitable together

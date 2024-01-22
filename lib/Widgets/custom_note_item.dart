@@ -1,64 +1,73 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:notesapp/Views/edit_note_item_view.dart';
 
 class CustomNoteItem extends StatelessWidget {
   const CustomNoteItem({super.key, required this.color});
   final Color color;
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 8),
-      child: Container(
-        width: double.infinity,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(12),
-          color: color,
-        ),
-        child: Padding(
-          padding:
-              const EdgeInsets.only(top: 16, bottom: 16, left: 16, right: 8),
-          child: Column(crossAxisAlignment: CrossAxisAlignment.end, children: [
-            ListTile(
-              contentPadding: EdgeInsets.zero,
-              title: const Text(
-                "Flutter tips",
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 26,
-                  fontWeight: FontWeight.normal,
-                ),
-              ),
-              subtitle: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 16),
-                child: Text(
-                  "Build Your Career With Tharwat Samy",
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(context, MaterialPageRoute(builder: (context) {
+          return const EditNoteItemView();
+        }));
+      },
+      child: Padding(
+        padding: const EdgeInsets.only(bottom: 8),
+        child: Container(
+          width: double.infinity,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(12),
+            color: color,
+          ),
+          child: Padding(
+            padding:
+                const EdgeInsets.only(top: 16, bottom: 16, left: 16, right: 8),
+            child:
+                Column(crossAxisAlignment: CrossAxisAlignment.end, children: [
+              ListTile(
+                contentPadding: EdgeInsets.zero,
+                title: const Text(
+                  "Flutter tips",
                   style: TextStyle(
-                    color: Colors.black.withOpacity(0.5),
-                    fontSize: 20,
+                    color: Colors.black,
+                    fontSize: 26,
+                    fontWeight: FontWeight.normal,
+                  ),
+                ),
+                subtitle: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 16),
+                  child: Text(
+                    "Build Your Career With Tharwat Samy",
+                    style: TextStyle(
+                      color: Colors.black.withOpacity(0.5),
+                      fontSize: 20,
+                    ),
+                  ),
+                ),
+                trailing: IconButton(
+                  onPressed: () {},
+                  icon: const Icon(
+                    FontAwesomeIcons.trash,
+                    color: Colors.black,
+                    size: 24,
                   ),
                 ),
               ),
-              trailing: IconButton(
-                onPressed: () {},
-                icon: const Icon(
-                  FontAwesomeIcons.trash,
-                  color: Colors.black,
-                  size: 24,
+              Padding(
+                padding: const EdgeInsets.only(right: 16),
+                child: Text(
+                  "May 21,2022",
+                  textAlign: TextAlign.right,
+                  style: TextStyle(
+                    color: Colors.black.withOpacity(0.5),
+                    fontSize: 16,
+                  ),
                 ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(right: 16),
-              child: Text(
-                "May 21,2022",
-                textAlign: TextAlign.right,
-                style: TextStyle(
-                  color: Colors.black.withOpacity(0.5),
-                  fontSize: 16,
-                ),
-              ),
-            )
-          ]),
+              )
+            ]),
+          ),
         ),
       ),
     );
