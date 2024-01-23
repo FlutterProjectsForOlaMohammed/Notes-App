@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:notesapp/Widgets/custom_add_button.dart';
 import 'package:notesapp/Widgets/custom_text_form_field.dart';
