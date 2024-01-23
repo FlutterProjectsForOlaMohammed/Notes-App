@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:notesapp/Constants.dart';
 
 class CustomAddButton extends StatelessWidget {
-  const CustomAddButton({super.key});
-
+  const CustomAddButton({super.key, required this.onPressed});
+  final VoidCallback onPressed;
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: IconButton(
-        onPressed: () {},
+        onPressed: onPressed,
         icon: const Text(
           "Add",
           style: TextStyle(

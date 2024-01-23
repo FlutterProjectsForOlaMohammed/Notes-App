@@ -15,3 +15,4 @@ List<Color> notesColor = [
   const Color.fromRGBO(100, 255, 218, 1),
 ];
 const kPrimaryColor = Color.fromRGBO(77, 182, 172, 1);
+const kNotesBox = 'Notes_Box';
