@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
-import 'package:notesapp/Constants.dart';
 import 'package:notesapp/Widgets/add_note_form.dart';
 import 'package:notesapp/Widgets/show_alert_dialog.dart';
 import 'package:notesapp/cubits/Add%20Note%20Cubit/add_note_cubit.dart';
@@ -41,17 +39,9 @@ class ShowModalBottomSheet extends StatelessWidget {
               });
         }
       }, builder: (context, state) {
-        if (state is AddNoteInitial) {
-          return const AddNoteForm();
-        } else {
-          return ModalProgressHUD(
-            inAsyncCall: (state is AddNoteLoading) ? true : false,
-            progressIndicator: const CircularProgressIndicator(
-              color: kPrimaryColor,
-            ),
-            child: const AddNoteForm(),
-          );
-        }
+        return AbsorbPointer(
+            absorbing: state is AddNoteLoading ? true : false,
+            child: const AddNoteForm());
       }),
     );
   }

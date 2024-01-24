@@ -4,6 +4,7 @@ import 'package:notesapp/Models/note_model.dart';
 import 'package:notesapp/Widgets/custom_add_button.dart';
 import 'package:notesapp/Widgets/custom_text_form_field.dart';
 import 'package:notesapp/cubits/Add%20Note%20Cubit/add_note_cubit.dart';
+import 'package:notesapp/cubits/Add%20Note%20Cubit/add_note_states.dart';
 
 class AddNoteForm extends StatefulWidget {
   const AddNoteForm({super.key});
@@ -45,16 +46,22 @@ class _AddNoteFormState extends State<AddNoteForm> {
           const SizedBox(
             height: 100,
           ),
-          CustomAddButton(
-            onPressed: () {
-              if (formKey.currentState!.validate()) {
-                formKey.currentState!.save();
-                NoteModel note = NoteModel(0,
-                    title: title!,
-                    subTitle: subTitle!,
-                    date: (DateTime.now()).toString());
-                BlocProvider.of<AddNoteCubit>(context).addNote(note: note);
-              }
+          BlocBuilder<AddNoteCubit, AddNotes>(
+            builder: (context, state) {
+              return CustomAddButton(
+                isLoading: state is AddNoteLoading ? true : false,
+                onPressed: () {
+                  if (formKey.currentState!.validate()) {
+                    formKey.currentState!.save();
+
+                    NoteModel note = NoteModel(0,
+                        title: title!,
+                        subTitle: subTitle!,
+                        date: (DateTime.now()).toString());
+                    BlocProvider.of<AddNoteCubit>(context).addNote(note: note);
+                  }
+                },
+              );
             },
           )
         ],
