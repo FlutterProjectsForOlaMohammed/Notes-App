@@ -9,31 +9,41 @@ class CustomAddButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(16.0),
+      padding: EdgeInsets.only(
+          left: 16,
+          right: 16,
+          top: 16,
+          bottom: MediaQuery.of(context).viewInsets.bottom),
       child: SizedBox(
-        width: 24,
         height: 43,
-        child: IconButton(
-          onPressed: onPressed,
-          icon: (isLoading)
-              ? const SizedBox(
-                  height: 24,
-                  width: 24,
-                  child: CircularProgressIndicator(
-                    color: Colors.black,
+        child: GestureDetector(
+          onTap: onPressed,
+          child: Container(
+            decoration: BoxDecoration(
+              color: kPrimaryColor,
+              borderRadius: BorderRadius.circular(23),
+            ),
+            width: MediaQuery.of(context).size.width,
+            child: (isLoading)
+                ? const Center(
+                    child: SizedBox(
+                      width: 24,
+                      height: 24,
+                      child: CircularProgressIndicator(
+                        color: Colors.black,
+                      ),
+                    ),
+                  )
+                : const Center(
+                    child: Text(
+                      "Add",
+                      style: TextStyle(
+                          color: Color(0xff1e1e1e),
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20),
+                    ),
                   ),
-                )
-              : const Text(
-                  "Add",
-                  style: TextStyle(
-                      color: Color(0xff1e1e1e),
-                      fontWeight: FontWeight.bold,
-                      fontSize: 20),
-                ),
-          style: ElevatedButton.styleFrom(
-              backgroundColor: kPrimaryColor,
-              shape: BeveledRectangleBorder(
-                  borderRadius: BorderRadius.circular(23))),
+          ),
         ),
       ),
     );

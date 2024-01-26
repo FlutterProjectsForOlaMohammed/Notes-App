@@ -20,51 +20,57 @@ class _AddNoteFormState extends State<AddNoteForm> {
   Widget build(BuildContext context) {
     return Form(
       key: formKey,
-      child: ListView(
-        children: [
-          const SizedBox(
-            height: 50,
-          ),
-          CustomTextFormField(
-            hintText: "Title",
-            maxLines: 1,
-            save: (value) {
-              title = value;
-            },
-          ),
-          const SizedBox(
-            height: 15,
-          ),
-          CustomTextFormField(
-            hintText: "Content",
-            maxLines: 5,
-            heightHintText: 8,
-            save: (value) {
-              subTitle = value;
-            },
-          ),
-          const SizedBox(
-            height: 100,
-          ),
-          BlocBuilder<AddNoteCubit, AddNotes>(
-            builder: (context, state) {
-              return CustomAddButton(
-                isLoading: state is AddNoteLoading ? true : false,
-                onPressed: () {
-                  if (formKey.currentState!.validate()) {
-                    formKey.currentState!.save();
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            const SizedBox(
+              height: 50,
+            ),
+            CustomTextFormField(
+              hintText: "Title",
+              maxLines: 1,
+              save: (value) {
+                title = value;
+              },
+            ),
+            const SizedBox(
+              height: 15,
+            ),
+            CustomTextFormField(
+              hintText: "Content",
+              maxLines: 5,
+              heightHintText: 8,
+              save: (value) {
+                subTitle = value;
+              },
+            ),
+            const SizedBox(
+              height: 50,
+            ),
+            BlocBuilder<AddNoteCubit, AddNotes>(
+              builder: (context, state) {
+                return CustomAddButton(
+                  isLoading: state is AddNoteLoading ? true : false,
+                  onPressed: () {
+                    if (formKey.currentState!.validate()) {
+                      formKey.currentState!.save();
 
-                    NoteModel note = NoteModel(0,
-                        title: title!,
-                        subTitle: subTitle!,
-                        date: (DateTime.now()).toString());
-                    BlocProvider.of<AddNoteCubit>(context).addNote(note: note);
-                  }
-                },
-              );
-            },
-          )
-        ],
+                      NoteModel note = NoteModel(0,
+                          title: title!,
+                          subTitle: subTitle!,
+                          date: (DateTime.now()).toString());
+                      BlocProvider.of<AddNoteCubit>(context)
+                          .addNote(note: note);
+                    }
+                  },
+                );
+              },
+            ),
+            const SizedBox(
+              height: 16,
+            ),
+          ],
+        ),
       ),
     );
   }
