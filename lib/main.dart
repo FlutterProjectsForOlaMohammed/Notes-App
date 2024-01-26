@@ -1,12 +1,9 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:notesapp/Constants.dart';
 import 'package:notesapp/Models/note_model.dart';
 import 'package:notesapp/Views/notes_app_view.dart';
-import 'package:notesapp/cubits/Add%20Note%20Cubit/add_note_cubit.dart';
 import 'package:notesapp/simple_bloc_observer.dart';
 
 void main() async {
