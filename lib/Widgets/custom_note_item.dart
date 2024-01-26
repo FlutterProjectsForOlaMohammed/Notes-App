@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:hive_flutter/hive_flutter.dart';
-import 'package:notesapp/Constants.dart';
 import 'package:notesapp/Models/note_model.dart';
 import 'package:notesapp/Views/edit_note_item_view.dart';
 import 'package:notesapp/cubits/Show%20Notes%20Cubit/show_notes_cubit.dart';
@@ -17,7 +15,9 @@ class CustomNoteItem extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         Navigator.push(context, MaterialPageRoute(builder: (context) {
-          return const EditNoteItemView();
+          return EditNoteItemView(
+            note: note,
+          );
         }));
       },
       child: Padding(
