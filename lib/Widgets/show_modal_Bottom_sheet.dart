@@ -4,6 +4,7 @@ import 'package:notesapp/Widgets/add_note_form.dart';
 import 'package:notesapp/Widgets/show_alert_dialog.dart';
 import 'package:notesapp/cubits/Add%20Note%20Cubit/add_note_cubit.dart';
 import 'package:notesapp/cubits/Add%20Note%20Cubit/add_note_states.dart';
+import 'package:notesapp/cubits/Show%20Notes%20Cubit/show_notes_cubit.dart';
 
 class ShowModalBottomSheet extends StatelessWidget {
   const ShowModalBottomSheet({
@@ -27,6 +28,7 @@ class ShowModalBottomSheet extends StatelessWidget {
               });
         }
         if (state is AddNoteSuccess) {
+          BlocProvider.of<ShowNotesCubit>(context).showAllNotes();
           Navigator.pop(context);
           showDialog(
               context: context,

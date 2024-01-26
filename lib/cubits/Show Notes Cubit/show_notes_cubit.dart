@@ -8,5 +8,6 @@ class ShowNotesCubit extends Cubit<ShowNotes> {
   List notes = [];
   showAllNotes() {
     notes = Hive.box(kNotesBox).values.toList();
+    emit(NotesSuccess());
   }
 }
