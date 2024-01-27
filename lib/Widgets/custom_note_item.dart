@@ -3,13 +3,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:notesapp/Models/note_model.dart';
 import 'package:notesapp/Views/edit_note_item_view.dart';
+import 'package:notesapp/Widgets/show_alert_dialog.dart';
 import 'package:notesapp/cubits/Show%20Notes%20Cubit/show_notes_cubit.dart';
 import 'package:notesapp/cubits/Show%20Notes%20Cubit/show_notes_state.dart';
 
 class CustomNoteItem extends StatelessWidget {
-  const CustomNoteItem({super.key, required this.note, required this.color});
+  const CustomNoteItem({super.key, required this.note});
   final NoteModel note;
-  final Color color;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -26,7 +26,7 @@ class CustomNoteItem extends StatelessWidget {
           width: MediaQuery.of(context).size.width,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(12),
-            color: color,
+            color: Color(note.color),
           ),
           child: Padding(
             padding:
@@ -59,6 +59,15 @@ class CustomNoteItem extends StatelessWidget {
                       onPressed: () async {
                         note.delete();
                         BlocProvider.of<ShowNotesCubit>(context).showAllNotes();
+                        showDialog(
+                            context: context,
+                            builder: (context) {
+                              return const showAlertDialog(
+                                  title: "Done",
+                                  subTitle: "Note Deleted Successfully",
+                                  backgroundColor: Colors.green,
+                                  pressedText: "Ok");
+                            });
                       },
                       icon: const Icon(
                         FontAwesomeIcons.trash,

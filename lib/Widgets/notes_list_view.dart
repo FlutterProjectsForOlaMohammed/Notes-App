@@ -21,7 +21,6 @@ class NotesListView extends StatelessWidget {
               itemBuilder: (context, index) {
                 return CustomNoteItem(
                   note: notes[index],
-                  color: notesColor[index % 12],
                 );
               });
         },

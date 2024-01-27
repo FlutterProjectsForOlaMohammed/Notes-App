@@ -24,6 +24,7 @@ class ShowModalBottomSheet extends StatelessWidget {
                 return const showAlertDialog(
                     title: "Error",
                     subTitle: "Error Occured , Please Enter The Note again ",
+                    pressedText: "Ok",
                     backgroundColor: Colors.red);
               });
         }
@@ -34,6 +35,7 @@ class ShowModalBottomSheet extends StatelessWidget {
               context: context,
               builder: (BuildContext context) {
                 return const showAlertDialog(
+                  pressedText: "Ok",
                   title: "Done",
                   subTitle: "Note Saved Sucessfully",
                   backgroundColor: Colors.green,

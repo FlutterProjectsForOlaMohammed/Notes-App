@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
+import 'package:notesapp/Constants.dart';
 import 'package:notesapp/Models/note_model.dart';
+import 'package:notesapp/Widgets/add_note_form.dart';
 import 'package:notesapp/Widgets/custom_app_bar.dart';
 import 'package:notesapp/Widgets/custom_text_form_field.dart';
 import 'package:notesapp/Widgets/show_alert_dialog.dart';
-import 'package:notesapp/cubits/Add%20Note%20Cubit/add_note_cubit.dart';
 import 'package:notesapp/cubits/Show%20Notes%20Cubit/show_notes_cubit.dart';
 
 class EditNoteItemBody extends StatefulWidget {
@@ -42,6 +43,7 @@ class _EditNoteItemBodyState extends State<EditNoteItemBody> {
                     return const showAlertDialog(
                         title: "Done",
                         subTitle: "Updated Done Successfullay",
+                        pressedText: "Ok",
                         backgroundColor: Colors.green);
                   });
             },
@@ -67,7 +69,56 @@ class _EditNoteItemBodyState extends State<EditNoteItemBody> {
             newSubTitle = value;
           },
         ),
+        SizedBox(
+          height: 30,
+        ),
+        SizedBox(
+            height: 48,
+            child: EditNoteColor(
+              note: widget.note,
+            )),
       ],
+    );
+  }
+}
+
+class EditNoteColor extends StatefulWidget {
+  const EditNoteColor({super.key, required this.note});
+  final NoteModel note;
+
+  @override
+  State<EditNoteColor> createState() => _EditNoteColorState();
+}
+
+class _EditNoteColorState extends State<EditNoteColor> {
+  late int currentIndex;
+  @override
+  void initState() {
+    super.initState();
+    currentIndex = notesColor.indexOf(Color(widget.note.color));
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16),
+      child: ListView.builder(
+          itemCount: notesColor.length,
+          scrollDirection: Axis.horizontal,
+          itemBuilder: (context, index) {
+            return GestureDetector(
+              onTap: () {
+                currentIndex = index;
+                widget.note.color = notesColor[index].value;
+                widget.note.save();
+                setState(() {});
+              },
+              child: ColorItem(
+                color: notesColor[index],
+                isActive: (currentIndex == index),
+              ),
+            );
+          }),
     );
   }
 }

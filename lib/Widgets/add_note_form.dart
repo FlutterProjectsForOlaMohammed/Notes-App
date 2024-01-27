@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
+import 'package:notesapp/Constants.dart';
 import 'package:notesapp/Models/note_model.dart';
 import 'package:notesapp/Widgets/custom_add_button.dart';
 import 'package:notesapp/Widgets/custom_text_form_field.dart';
 import 'package:notesapp/cubits/Add%20Note%20Cubit/add_note_cubit.dart';
 import 'package:notesapp/cubits/Add%20Note%20Cubit/add_note_states.dart';
-import 'package:notesapp/cubits/Show%20Notes%20Cubit/show_notes_cubit.dart';
 
 class AddNoteForm extends StatefulWidget {
   const AddNoteForm({super.key});
@@ -47,7 +47,11 @@ class _AddNoteFormState extends State<AddNoteForm> {
               },
             ),
             const SizedBox(
-              height: 50,
+              height: 25,
+            ),
+            SizedBox(height: 48, child: const ColorsListView()),
+            const SizedBox(
+              height: 15,
             ),
             BlocBuilder<AddNoteCubit, AddNotes>(
               builder: (context, state) {
@@ -57,7 +61,7 @@ class _AddNoteFormState extends State<AddNoteForm> {
                     if (formKey.currentState!.validate()) {
                       formKey.currentState!.save();
                       DateTime now = DateTime.now();
-                      NoteModel note = NoteModel(0,
+                      NoteModel note = NoteModel(ColorsListView.selectedColor,
                           title: title!,
                           subTitle: subTitle!,
                           date: (DateFormat.yMMMMd().format(now)).toString());
@@ -74,6 +78,66 @@ class _AddNoteFormState extends State<AddNoteForm> {
           ],
         ),
       ),
+    );
+  }
+}
+
+class ColorItem extends StatelessWidget {
+  const ColorItem({super.key, required this.isActive, required this.color});
+  final bool isActive;
+  final Color color;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 5),
+      child: (isActive)
+          ? CircleAvatar(
+              radius: 24,
+              backgroundColor: Colors.white,
+              child: CircleAvatar(
+                radius: 20,
+                backgroundColor: color,
+              ),
+            )
+          : CircleAvatar(
+              radius: 24,
+              backgroundColor: color,
+            ),
+    );
+  }
+}
+
+class ColorsListView extends StatefulWidget {
+  const ColorsListView({super.key});
+  static int selectedColor = notesColor[0].value;
+  @override
+  State<ColorsListView> createState() => _ColorsListViewState();
+}
+
+class _ColorsListViewState extends State<ColorsListView> {
+  int currentIndex = 0;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16),
+      child: ListView.builder(
+          itemCount: notesColor.length,
+          scrollDirection: Axis.horizontal,
+          itemBuilder: (context, index) {
+            return GestureDetector(
+              onTap: () {
+                currentIndex = index;
+                ColorsListView.selectedColor = notesColor[index].value;
+                setState(() {});
+              },
+              child: ColorItem(
+                color: notesColor[index],
+                isActive: (currentIndex == index),
+              ),
+            );
+          }),
     );
   }
 }
