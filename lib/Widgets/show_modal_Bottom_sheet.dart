@@ -37,7 +37,7 @@ class ShowModalBottomSheet extends StatelessWidget {
                 return const ShowAlertDialog(
                   pressedText: "Ok",
                   title: "Done",
-                  subTitle: "Note Saved Sucessfully",
+                  subTitle: "Note Saved Successfully",
                   backgroundColor: Colors.green,
                 );
               });

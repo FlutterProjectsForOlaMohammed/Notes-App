@@ -40,7 +40,7 @@ class _EditNoteItemBodyState extends State<EditNoteItemBody> {
                   builder: (context) {
                     return const ShowAlertDialog(
                         title: "Done",
-                        subTitle: "Updated Done Successfullay",
+                        subTitle: "Updated Done Successfully",
                         pressedText: "Ok",
                         backgroundColor: Colors.green);
                   });
