@@ -11,7 +11,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
   Hive.registerAdapter(NoteModelAdapter());
-  await Hive.openBox(kNotesBox);
+  await Hive.openBox<NoteModel>(kNotesBox);
   Bloc.observer = SimpleBlocObserver();
   // here we determined Objects that can be Storeed in Database
   runApp(const NotesApp());

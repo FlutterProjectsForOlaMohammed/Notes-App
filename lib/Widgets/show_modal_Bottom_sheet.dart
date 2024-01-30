@@ -21,7 +21,7 @@ class ShowModalBottomSheet extends StatelessWidget {
           showDialog(
               context: context,
               builder: (BuildContext context) {
-                return const showAlertDialog(
+                return const ShowAlertDialog(
                     title: "Error",
                     subTitle: "Error Occured , Please Enter The Note again ",
                     pressedText: "Ok",
@@ -34,7 +34,7 @@ class ShowModalBottomSheet extends StatelessWidget {
           showDialog(
               context: context,
               builder: (BuildContext context) {
-                return const showAlertDialog(
+                return const ShowAlertDialog(
                   pressedText: "Ok",
                   title: "Done",
                   subTitle: "Note Saved Sucessfully",

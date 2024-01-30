@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
 
-OutlineInputBorder BuildBorderForTextFormField() {
+OutlineInputBorder buildBorderForTextFormField() {
   return const OutlineInputBorder(borderSide: BorderSide(color: Colors.white));
 }

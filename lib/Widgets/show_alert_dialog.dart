@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class showAlertDialog extends StatelessWidget {
-  const showAlertDialog({
+class ShowAlertDialog extends StatelessWidget {
+  const ShowAlertDialog({
     super.key,
     required this.title,
     required this.subTitle,

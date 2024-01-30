@@ -8,10 +8,10 @@ class AddNoteCubit extends Cubit<AddNotes> {
   AddNoteCubit() : super(AddNoteInitial());
   addNote({required NoteModel note}) async {
     emit(AddNoteLoading());
-    await Future.delayed(Duration(seconds: 1));
+    await Future.delayed(const Duration(seconds: 1));
     try {
-      var NoteBox = Hive.box(kNotesBox);
-      await NoteBox.add(note);
+      var noteBox = Hive.box<NoteModel>(kNotesBox);
+      await noteBox.add(note);
       emit(AddNoteSuccess());
     } on Exception catch (e) {
       emit(AddNoteFailure(errMessage: e.toString()));

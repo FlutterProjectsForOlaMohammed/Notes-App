@@ -62,7 +62,7 @@ class CustomNoteItem extends StatelessWidget {
                         showDialog(
                             context: context,
                             builder: (context) {
-                              return const showAlertDialog(
+                              return const ShowAlertDialog(
                                   title: "Done",
                                   subTitle: "Note Deleted Successfully",
                                   backgroundColor: Colors.green,

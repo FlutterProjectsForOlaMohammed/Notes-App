@@ -36,9 +36,9 @@ class CustomTextFormField extends StatelessWidget {
         cursorColor: Colors.grey,
         maxLines: maxLines,
         decoration: InputDecoration(
-            focusedBorder: BuildBorderForTextFormField(),
-            enabledBorder: BuildBorderForTextFormField(),
-            border: BuildBorderForTextFormField(),
+            focusedBorder: buildBorderForTextFormField(),
+            enabledBorder: buildBorderForTextFormField(),
+            border: buildBorderForTextFormField(),
             hintText: hintText,
             hintStyle: TextStyle(
               height: heightHintText,
